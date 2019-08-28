@@ -53,6 +53,11 @@ class UploadFileController extends Controller
         $data = $request->all();
         $uploadedFile = $request->file('file_name');
         $filename = time().$uploadedFile->getClientOriginalName();
+        $extension = pathinfo($filename, PATHINFO_EXTENSION); // return l'extension du fichier
+        if ($extension!="log") {
+            flashy()->error('Ce type de fichier ne peut etre télécharger');
+            return back();
+        }
         $path = Storage::disk('files')->getAdapter()->getPathPrefix();
         Storage::disk('files')->putFileAs(
             null,
@@ -86,8 +91,14 @@ class UploadFileController extends Controller
             }
             
         }
-        $inject = CategorieM::find(6);
-        $dos = CategorieM::find(7);
+        $inject = CategorieM::firstOrCreate([
+            'libelle_categorie' => 'Injection',
+            'description' => ''
+        ]);
+        $dos = CategorieM::firstOrCreate([
+            'libelle_categorie' => 'DDOS',
+            'description' => ''
+        ]);
         $menaces = Menace::all();
         if(empty($menaces)){
             foreach ($tableLogs as $ligne) {
@@ -125,7 +136,7 @@ class UploadFileController extends Controller
                 }
             }
         }
-        
+        flashy()->success('Fichier sauvegardé avec success','');
         return redirect()->route('menaces.index');
     }
 

@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        MercurySeries\Flashy\FlashyServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -190,6 +190,7 @@ return [
 
     'aliases' => [
 
+        'Flashy' => MercurySeries\Flashy\Flashy::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,

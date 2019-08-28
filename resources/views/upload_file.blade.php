@@ -2,7 +2,9 @@
 
 @section('content')
 <div class="container-fluid">
-
+    {!! $errors->first('file_name', '<div class="alert alert-danger" role="alert">
+        :message
+      </div>') !!}
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h1 class="h3 mb-0 text-gray-800">Charger le fichier log</h1>
@@ -21,10 +23,14 @@
           </div>
           <!-- Card Body -->
           <div class="card-body">
+
           <form class="user" method="POST" action="{{ route('upload.store') }}" enctype="multipart/form-data" >
               @csrf
               <div class="form-group row">
-                  <input type="file"  name="file_name" placeholder="Fichier log" required>
+                  <input type="file" class="form-control-file {{ $errors->has('file_name') ? 'is-invalid' : '' }}"  name="file_name" id="file_name" placeholder="Fichier log" required>
+              
+                  
+
               </div>
               <div class="form-group row">
                  <button type="submit" class="btn btn-primary">Enregistrer</button>

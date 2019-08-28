@@ -25,6 +25,7 @@
 
 </head>
 
+  
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -321,7 +322,7 @@
   <!-- Page level custom scripts -->
   <script src="/js/chart-area-demo.js"></script>
   <script src="/js/chart-pie-demo.js"></script>
-
+  @include('flashy::message')
 </body>
 
 </html>

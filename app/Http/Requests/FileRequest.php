@@ -24,7 +24,7 @@ class FileRequest extends FormRequest
     public function rules()
     {
         return [
-            'file_name' => 'required'
+            'file_name' => 'required|max:1000'
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CategorieM;
 use Illuminate\Http\Request;
-
+// use Flashy;
 class CategorieController extends Controller
 {
     /**
@@ -46,7 +46,7 @@ class CategorieController extends Controller
             'libelle_categorie'=>$request->get('libelle_categorie'),
             'description' => $request->get('description')
         ]);
-
+        flashy()->success('Catégorie enregistré avec succès', '');
         return redirect()->route('categories.index');
     }
 
@@ -89,6 +89,8 @@ class CategorieController extends Controller
         $categorie->libelle_categorie = $request->get('libelle_categorie');
         $categorie->description = $request->get('description');
         $categorie->save();
+        flashy()->success('Catégorie modifiée avec succès', '');
+
         return redirect()->route('categories.index');
     }
 
